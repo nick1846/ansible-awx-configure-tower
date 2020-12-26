@@ -1,0 +1,63 @@
+---
+
+- name: Create a new organization
+  tower_organization:
+    name: "keycademy"
+    description: "education"
+    state: present
+
+- name: Create an Inventory
+  tower_inventory:
+    name: "team-1 inventory"
+    description: "inventory of team-1"
+    organization: "keyacademy"
+    state: present  
+
+- name: Create a Hosts
+  tower_host:
+    name: "{{ item }}"
+    inventory: "team-1 inventory"
+    state: present
+  with_items:
+    - nick-hosts
+    - zhanyl-hosts
+ 
+- name: Create a Team
+  tower_team:
+    name: "team-1"
+    description: "team-1"
+    organization: "keyacademy"
+    state: present
+    validate_certs: false
+
+- name: Add tower user 1
+  tower_user:
+    username: kanishay
+    password: kanishay2020
+    email: kanishay@gmail.com
+    first_name: Kanishay
+    last_name: Nurkamil
+    state: present
+
+- name: Add tower user 2
+  tower_user:
+    username: zhanyl
+    password: zhanyl2020
+    email: zhanyl@gmail.com
+    first_name: Zhanyl
+    last_name: Abdybaeva
+    state: present
+
+- name: Add tower user as a system administrator
+  tower_user:
+    username: nick
+    password: nick2020
+    email: nick@gmail.com
+    first_name: Nikolay
+    last_name: Kim
+    superuser: yes
+    state: present      
+
+  
+
+  
