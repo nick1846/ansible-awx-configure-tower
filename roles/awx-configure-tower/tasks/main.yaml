@@ -54,6 +54,15 @@
     tower_password: password
     inputs:      
       ssh_key_data: "{{ lookup('file', '/home/ec2-user/.ssh/gitawx') }}"
+      
+- name: Add tower Machine credential
+  tower_credential:
+    name: linux-key
+    organization: "{{ organization_name }}"
+    state: present
+    credential_type: Machine
+    inputs:     
+      ssh_key_data: "{{ lookup('file', '/home/ec2-user/.ssh/linux') }}"
 
   
 
