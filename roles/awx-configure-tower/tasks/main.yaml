@@ -2,22 +2,28 @@
 
 - name: Create a new organization
   tower_organization:
-    name: "keycademy"
+    name: "keyacademy"
     description: "education"
     state: present
+    tower_username: admin
+    tower_password: password
 
 - name: Create an Inventory
   tower_inventory:
-    name: "team-1 inventory"
+    name: "team-1-inventory"
     description: "inventory of team-1"
     organization: "keyacademy"
     state: present  
+    tower_username: admin
+    tower_password: password
 
 - name: Create a Hosts
   tower_host:
     name: "{{ item }}"
-    inventory: "team-1 inventory"
+    inventory: "team-1-inventory"
     state: present
+    tower_username: admin
+    tower_password: password
   with_items:
     - nick-hosts
     - zhanyl-hosts
@@ -29,6 +35,8 @@
     organization: "keyacademy"
     state: present
     validate_certs: false
+    tower_username: admin
+    tower_password: password
 
 - name: Add tower user 1
   tower_user:
@@ -38,6 +46,8 @@
     first_name: Kanishay
     last_name: Nurkamil
     state: present
+    tower_username: admin
+    tower_password: password
 
 - name: Add tower user 2
   tower_user:
@@ -47,6 +57,8 @@
     first_name: Zhanyl
     last_name: Abdybaeva
     state: present
+    tower_username: admin
+    tower_password: password
 
 - name: Add tower user as a system administrator
   tower_user:
@@ -54,9 +66,10 @@
     password: nick2020
     email: nick@gmail.com
     first_name: Nikolay
-    last_name: Kim
-    superuser: yes
-    state: present      
+    last_name: Kim    
+    state: present  
+    tower_username: admin
+    tower_password: password
 
   
 
