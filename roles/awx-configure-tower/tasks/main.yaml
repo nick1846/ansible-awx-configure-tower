@@ -46,14 +46,14 @@
 
 - name: Create a valid SCM credential from a private_key file
   tower_credential:
-    name: SCM Credential
+    name: git-key
     organization: "{{ organization_name }}"
     state: present
     credential_type: Source Control
-    inputs:
-      username: gitawx
-      password: gitawx2020
-      ssh_key_data: "{{ lookup('file', '/home/ec2-user/.ssh/awxgit') }}"
+    tower_username: admin
+    tower_password: password
+    inputs:      
+      ssh_key_data: "{{ lookup('file', '/home/ec2-user/.ssh/gitawx') }}"
 
   
 
