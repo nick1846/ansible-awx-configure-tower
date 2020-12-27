@@ -1,3 +1,3 @@
-[awx-host] 
+[awx_host] 
 
 localhost ansible_connection=local

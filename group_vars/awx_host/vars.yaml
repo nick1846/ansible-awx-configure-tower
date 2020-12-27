@@ -1,0 +1,13 @@
+
+user_details:
+  - { username: 'kanishay', password: 'kanishay2020', email: 'kanishay@gmail.com', first_name: 'Kanishay', last_name: 'Nurkamil' }
+  - { username: 'nick', password: 'nick2020', email: 'nick@gmail.com', first_name: 'Nikolay', last_name: 'Kim' }
+  - { username: 'zhanyl', password: 'zhanyl2020', email: 'zhanyl@gmail.com', first_name: 'Zhanyl', last_name: 'Abdybaeva' }
+
+organization_name: "keyacademy"
+inventory_name: "team-1-inventory"
+team_name: "team-1"
+host_name: 
+  - nick-hosts
+  - zhanyl-hosts
+  

@@ -2,17 +2,15 @@
 
 - name: Create a new organization
   tower_organization:
-    name: "keyacademy"
-    description: "education"
+    name: "{{ organization_name }}"    
     state: present
     tower_username: admin
     tower_password: password
 
 - name: Create an Inventory
   tower_inventory:
-    name: "team-1-inventory"
-    description: "inventory of team-1"
-    organization: "keyacademy"
+    name: "{{ inventory_name }}"  
+    organization: "{{ organization_name }}"
     state: present  
     tower_username: admin
     tower_password: password
@@ -20,56 +18,34 @@
 - name: Create a Hosts
   tower_host:
     name: "{{ item }}"
-    inventory: "team-1-inventory"
+    inventory: "{{ inventory_name }}"
     state: present
     tower_username: admin
     tower_password: password
-  with_items:
-    - nick-hosts
-    - zhanyl-hosts
+  with_items: "{{ host_name }}"    
  
 - name: Create a Team
   tower_team:
-    name: "team-1"
-    description: "team-1"
-    organization: "keyacademy"
+    name: "{{ team_name }}"   
+    organization: "{{ organization_name }}"
     state: present
     validate_certs: false
     tower_username: admin
     tower_password: password
 
-- name: Add tower user 1
+- name: Add Tower users
   tower_user:
-    username: kanishay
-    password: kanishay2020
-    email: kanishay@gmail.com
-    first_name: Kanishay
-    last_name: Nurkamil
+    username: "{{ item.username }}"
+    password: "{{ item.password }}"
+    email: "{{ item.email }}"
+    first_name: "{{ item.first_name }}"
+    last_name: "{{ item.last_name }}"
     state: present
     tower_username: admin
     tower_password: password
+  with_items: "{{ user_details }}"
 
-- name: Add tower user 2
-  tower_user:
-    username: zhanyl
-    password: zhanyl2020
-    email: zhanyl@gmail.com
-    first_name: Zhanyl
-    last_name: Abdybaeva
-    state: present
-    tower_username: admin
-    tower_password: password
 
-- name: Add tower user as a system administrator
-  tower_user:
-    username: nick
-    password: nick2020
-    email: nick@gmail.com
-    first_name: Nikolay
-    last_name: Kim    
-    state: present  
-    tower_username: admin
-    tower_password: password
 
   
 
