@@ -61,6 +61,8 @@
     organization: "{{ organization_name }}"
     state: present
     credential_type: Machine
+    tower_username: admin
+    tower_password: password
     inputs:     
       ssh_key_data: "{{ lookup('file', '/home/ec2-user/.ssh/linux') }}"
 
