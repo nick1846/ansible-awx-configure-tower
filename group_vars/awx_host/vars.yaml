@@ -1,4 +1,7 @@
 
+tower_username: admin
+tower_password: password 
+
 user_details:
   - { username: 'kanishay', password: 'kanishay2020', email: 'kanishay@gmail.com', first_name: 'Kanishay', last_name: 'Nurkamil' }
   - { username: 'nick', password: 'nick2020', email: 'nick@gmail.com', first_name: 'Nikolay', last_name: 'Kim' }
@@ -10,4 +13,8 @@ team_name: "team-1"
 host_name: 
   - nick-hosts
   - zhanyl-hosts
-  
+  - tower-host
+
+project_name: "team-1-project"
+scm_url: https://github.com/nick1846/awx-playbooks.git
+scm_type: git

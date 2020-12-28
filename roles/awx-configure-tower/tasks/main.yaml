@@ -3,24 +3,24 @@
   tower_organization:
     name: "{{ organization_name }}"    
     state: present
-    tower_username: admin
-    tower_password: password
+    tower_username: "{{ tower_username }}"
+    tower_password: "{{ tower_password }}"
 
 - name: Create an Inventory
   tower_inventory:
     name: "{{ inventory_name }}"  
     organization: "{{ organization_name }}"
     state: present  
-    tower_username: admin
-    tower_password: password
+    tower_username: "{{ tower_username }}"
+    tower_password: "{{ tower_password }}"
 
 - name: Create a Hosts
   tower_host:
     name: "{{ item }}"
     inventory: "{{ inventory_name }}"
     state: present
-    tower_username: admin
-    tower_password: password
+    tower_username: "{{ tower_username }}"
+    tower_password: "{{ tower_password }}"
   with_items: "{{ host_name }}"    
  
 - name: Create a Team
@@ -29,8 +29,8 @@
     organization: "{{ organization_name }}"
     state: present
     validate_certs: false
-    tower_username: admin
-    tower_password: password
+    tower_username: "{{ tower_username }}"
+    tower_password: "{{ tower_password }}"
 
 - name: Add Tower users
   tower_user:
@@ -40,8 +40,8 @@
     first_name: "{{ item.first_name }}"
     last_name: "{{ item.last_name }}"
     state: present
-    tower_username: admin
-    tower_password: password
+    tower_username: "{{ tower_username }}"
+    tower_password: "{{ tower_password }}"
   with_items: "{{ user_details }}"
 
 - name: Create a valid SCM credential from a private_key file
@@ -50,8 +50,8 @@
     organization: "{{ organization_name }}"
     state: present
     credential_type: Source Control
-    tower_username: admin
-    tower_password: password
+    tower_username: "{{ tower_username }}"
+    tower_password: "{{ tower_password }}"
     inputs:      
       ssh_key_data: "{{ lookup('file', '/home/ec2-user/.ssh/gitawx') }}"
       
@@ -61,10 +61,34 @@
     organization: "{{ organization_name }}"
     state: present
     credential_type: Machine
-    tower_username: admin
-    tower_password: password
+    tower_username: "{{ tower_username }}"
+    tower_password: "{{ tower_password }}"
     inputs:     
       ssh_key_data: "{{ lookup('file', '/home/ec2-user/.ssh/linux') }}"
+
+- name: Add tower project
+  tower_project:
+    name: "{{ project_name }}"    
+    organization: "{{ organization_name }}"
+    state: present
+    tower_username: "{{ tower_username }}"
+    tower_password: "{{ tower_password }}"
+    scm_url: "{{ scm_url }}"
+    scm_type: "{{ scm_type }}"    
+    scm_credential: "git-key"
+
+- name: Create Tower Ping job template
+  tower_job_template:
+    name: "Ping"
+    job_type: "run"
+    organization: "{{ organization_name }}"
+    inventory: "{{ inventory_name }}"
+    project: "{{ project_name }}"
+    playbook: "ping.yaml"
+    credentials: "linux-key"      
+    state: "present"
+    tower_username: "{{ tower_username }}"
+    tower_password: "{{ tower_password }}"
 
   
 
