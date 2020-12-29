@@ -16,7 +16,7 @@ host_name:
   - tower-host
 
 project_name: "team-1-project"
-scm_url: https://github.com/nick1846/awx-playbooks.git
+scm_url: https://github.com/Kanyshainurkamil/AWX-PLAYBOOKS.git
 scm_type: git
 
 job_templates:
