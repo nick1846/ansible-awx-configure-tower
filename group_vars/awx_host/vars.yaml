@@ -18,3 +18,9 @@ host_name:
 project_name: "team-1-project"
 scm_url: https://github.com/nick1846/awx-playbooks.git
 scm_type: git
+
+job_templates:
+  - { name: 'Ping', playbook: 'ping.yaml'}
+  - { name: 'Yum-update', playbook: 'yum-update.yaml'}
+  - { name: 'Webhost', playbook: 'web-host.yaml'}
+  - { name: 'Linux-users', playbook: 'linux-users.yaml'}

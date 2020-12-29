@@ -79,16 +79,17 @@
 
 - name: Create Tower Ping job template
   tower_job_template:
-    name: "Ping"
+    name: "{{ item.name }}"  "Ping"
     job_type: "run"
     organization: "{{ organization_name }}"
     inventory: "{{ inventory_name }}"
     project: "{{ project_name }}"
-    playbook: "ping.yaml"
+    playbook: "{{ item.playbook }}"   "ping.yaml"
     credentials: "linux-key"      
     state: "present"
     tower_username: "{{ tower_username }}"
     tower_password: "{{ tower_password }}"
+  with_items: "{{ job_templates }}"
 
   
 
