@@ -6,3 +6,4 @@
     - awx.awx
   roles:
     - awx-configure-tower
+    - generate-sshkeys
