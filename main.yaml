@@ -5,5 +5,6 @@
   collections:
     - awx.awx
   roles:
-    - awx-configure-tower
     - generate-sshkeys
+    - awx-configure-tower
+    
